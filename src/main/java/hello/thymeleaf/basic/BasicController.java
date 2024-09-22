@@ -55,17 +55,6 @@ public class BasicController {
     }
 
 
-    @Data
-    static class User {
-        private String username;
-        private int age;
-
-        public User(String username, int age) {
-            this.username = username;
-            this.age = age;
-        }
-    }
-
     @GetMapping("/basic-objects")
     public String basicObjects(Model model, HttpServletRequest request,
                                HttpServletResponse response, HttpSession session) {
@@ -78,6 +67,7 @@ public class BasicController {
 
     @Component("helloBean")
     static class HelloBean {
+
         public String hello(String data) {
             return "Hello " + data;
         }
@@ -118,6 +108,23 @@ public class BasicController {
     public String each(Model model) {
         addUsers(model);
         return "basic/each";
+    }
+
+    @GetMapping("/condition")
+    public String condition(Model model) {
+        addUsers(model);
+        return "basic/condition";
+    }
+
+    @Data
+    static class User {
+        private String username;
+        private int age;
+
+        public User(String username, int age) {
+            this.username = username;
+            this.age = age;
+        }
     }
 
     private void addUsers(Model model) {
